@@ -1,0 +1,4 @@
+package com.stockshield.entity;
+import jakarta.persistence.*; import java.time.Instant;
+@Entity @Table(name="products") public class Product { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id; @Column(nullable=false,unique=true) private String sku; @Column(nullable=false) private String name; @Column(nullable=false) private int inventory; @Column(nullable=false) private int initialInventory; @Column(nullable=false) private Instant createdAt=Instant.now();
+public Long getId(){return id;} public String getSku(){return sku;} public void setSku(String v){sku=v;} public String getName(){return name;} public void setName(String v){name=v;} public int getInventory(){return inventory;} public void setInventory(int v){inventory=v;} public int getInitialInventory(){return initialInventory;} public void setInitialInventory(int v){initialInventory=v;} public Instant getCreatedAt(){return createdAt;}}

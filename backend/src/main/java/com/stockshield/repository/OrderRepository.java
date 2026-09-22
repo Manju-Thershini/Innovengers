@@ -1,0 +1,1 @@
+package com.stockshield.repository; import com.stockshield.entity.Order; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface OrderRepository extends JpaRepository<Order,Long>{Optional<Order> findByIdempotencyKey(String k); List<Order> findTop50ByOrderByCreatedAtDesc(); long countByStatus(Order.Status s);}

@@ -1,0 +1,1 @@
+package com.stockshield.repository; import com.stockshield.entity.DeadLetterOrder; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface DeadLetterRepository extends JpaRepository<DeadLetterOrder,Long>{List<DeadLetterOrder> findByReprocessedFalseOrderByCreatedAtDesc();}

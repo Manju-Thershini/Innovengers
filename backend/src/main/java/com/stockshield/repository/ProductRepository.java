@@ -1,0 +1,2 @@
+package com.stockshield.repository; import com.stockshield.entity.Product; import org.springframework.data.jpa.repository.*; import jakarta.persistence.LockModeType; import java.util.*;
+public interface ProductRepository extends JpaRepository<Product,Long>{ Optional<Product> findBySku(String sku); @Lock(LockModeType.PESSIMISTIC_WRITE) @Query("select p from Product p where p.id=:id") Optional<Product> findLockedById(Long id); }

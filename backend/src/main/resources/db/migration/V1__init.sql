@@ -1,0 +1,7 @@
+create table products(id bigserial primary key,sku varchar(100) not null unique,name varchar(255) not null,inventory integer not null check(inventory>=0),initial_inventory integer not null check(initial_inventory>=0),created_at timestamptz not null);
+create table orders(id bigserial primary key,order_code varchar(100) not null unique,product_id bigint not null references products(id),quantity integer not null check(quantity>0),status varchar(30) not null,retry_count integer not null default 0,idempotency_key varchar(255) not null,created_at timestamptz not null,updated_at timestamptz not null);
+create unique index uk_orders_idempotency on orders(idempotency_key); create index idx_order_status on orders(status); create index idx_order_created on orders(created_at);
+create table order_events(id bigserial primary key,order_id bigint not null,event_type varchar(50) not null,message varchar(1000) not null,created_at timestamptz not null); create index idx_event_order on order_events(order_id);
+create table dead_letter_orders(id bigserial primary key,order_id bigint not null references orders(id),reason varchar(2000) not null,created_at timestamptz not null,reprocessed boolean not null default false);
+create table idempotency_keys(id bigserial primary key,key_value varchar(255) not null unique,order_id bigint not null references orders(id),created_at timestamptz not null);
+insert into products(sku,name,inventory,initial_inventory,created_at) values('FLASH-100','Flash Sale Demo Product',100,100,now());

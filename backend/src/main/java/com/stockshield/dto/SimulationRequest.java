@@ -1,0 +1,1 @@
+package com.stockshield.dto; import jakarta.validation.constraints.*; public record SimulationRequest(@NotNull Long productId,@Min(1) int initialInventory,@Min(1) @Max(20000) int customers,@Min(1) @Max(200) int threads,@Min(1) int quantity){}

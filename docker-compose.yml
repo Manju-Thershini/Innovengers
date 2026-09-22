@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: stockshield
+      POSTGRES_USER: stockshield
+      POSTGRES_PASSWORD: stockshield
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/stockshield
+      DB_USERNAME: stockshield
+      DB_PASSWORD: stockshield
+    ports: ["8080:8080"]
+    depends_on: [postgres]
+  frontend:
+    build: ./frontend
+    ports: ["5173:5173"]
+    depends_on: [backend]
+volumes: {pgdata: {}}

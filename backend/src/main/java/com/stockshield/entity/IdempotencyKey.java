@@ -1,0 +1,3 @@
+package com.stockshield.entity;
+import jakarta.persistence.*; import java.time.Instant;
+@Entity @Table(name="idempotency_keys",uniqueConstraints=@UniqueConstraint(name="uk_idem_key",columnNames="keyValue")) public class IdempotencyKey { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id; @Column(nullable=false) private String keyValue; @Column(nullable=false) private Long orderId; @Column(nullable=false) private Instant createdAt=Instant.now(); public IdempotencyKey(){} public IdempotencyKey(String k,Long o){keyValue=k;orderId=o;} public Long getId(){return id;} public String getKeyValue(){return keyValue;} public Long getOrderId(){return orderId;}}

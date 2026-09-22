@@ -1,0 +1,1 @@
+package com.stockshield.repository; import com.stockshield.entity.IdempotencyKey; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface IdempotencyRepository extends JpaRepository<IdempotencyKey,Long>{Optional<IdempotencyKey> findByKeyValue(String k);}

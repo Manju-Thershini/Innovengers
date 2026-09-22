@@ -1,0 +1,1 @@
+package com.stockshield.repository; import com.stockshield.entity.OrderEvent; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface OrderEventRepository extends JpaRepository<OrderEvent,Long>{List<OrderEvent> findTop50ByOrderByCreatedAtDesc();}
