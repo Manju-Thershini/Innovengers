@@ -22,7 +22,6 @@ Consider a flash sale where:
 
 StockShield processes these requests concurrently while ensuring:
 
-```text
 Successful Quantity ≤ Initial Inventory
 ````
 
